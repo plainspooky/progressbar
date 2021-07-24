@@ -3,6 +3,16 @@ progressbar
 
 Implements a smoothly progress bar on console using Unicode characters.
 
+# Installation
+
+Use
+
+``` shell
+pip install git+https://github.com/plainspooky/progressbar
+```
+
+To install the lastest version.
+
 # Usage
 
 There are some usage examples.

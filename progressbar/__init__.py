@@ -1,6 +1,14 @@
 """
 Implements a smoothly progress bar on console using Unicode characters.
 
+# Installation
+
+To install the lastest version, use:
+``` shell
+
+pip install git+https://github.com/plainspooky/progressbar
+```
+
 # Usage
 
 There are some usage examples.
