@@ -72,22 +72,25 @@ def get_width_by_environment() -> int:
 
 
 def sanitize_color(color: ColorType) -> ColorType:
-    """A valid color is a tuple with 3 elements and any different number of
-    elements will return None. Values have to be between 0 and 255 and are
-    croped. (see MAX_RGB_VALUE and MIN_RGB_VALUE.)"""
+    """A valid color is an integer numberor a tuple with 3 of it, any other
+    thing will return `None`. Values have to be between 0 and 255 and are
+    croped if not. (see MAX_RGB_VALUE and MIN_RGB_VALUE.)"""
 
-    if color:
+    def sanitize_values(value: int):
+        return (
+            MIN_RGB_VALUE
+            if value < MIN_RGB_VALUE
+            else MAX_RGB_VALUE
+            if value > MAX_RGB_VALUE
+            else value
+        )
+
+    if isinstance(color, int):
+        return sanitize_values(color)
+
+    if isinstance(color, tuple):
         return (
             None
             if len(color) != 3
-            else tuple(
-                [
-                    MIN_RGB_VALUE
-                    if i < MIN_RGB_VALUE
-                    else MAX_RGB_VALUE
-                    if i > MAX_RGB_VALUE
-                    else i
-                    for i in color
-                ]
-            )
+            else tuple([sanitize_values(i) for i in color])
         )

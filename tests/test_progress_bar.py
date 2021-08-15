@@ -52,7 +52,7 @@ class TestProgressBar:
 
         assert (
             progress_bar.fg == RGB_TUPLE_BLACK
-            and progress_bar.bg == RGB_TUPLE_WHITE
+            and progress_bar.bg == RGB_TUPLE_WHITE  # noqa W503
         )
 
     def test_if_removes_wrong_foreground_and_background_given_colors(self):
@@ -99,14 +99,14 @@ class TestProgressBar:
     def test_if_background_color_is_displayed_on_progress_bar(self):
 
         progress_bar = ProgressBar(PROGRESS_BAR_VALUE, bg=RGB_TUPLE_IKB)
-        set_bg_color_code = VT100.set_bg_color.format(*RGB_TUPLE_IKB)
+        set_bg_color_code = VT100.set_bg_color(RGB_TUPLE_IKB)
 
         assert set_bg_color_code in progress_bar.view(PROGRESS_BAR_VALUE)
 
     def test_if_foreground_color_is_displayed_on_progress_bar(self):
 
         progress_bar = ProgressBar(PROGRESS_BAR_VALUE, fg=RGB_TUPLE_IKB)
-        set_fg_color_code = VT100.set_fg_color.format(*RGB_TUPLE_IKB)
+        set_fg_color_code = VT100.set_fg_color(RGB_TUPLE_IKB)
 
         assert set_fg_color_code in progress_bar.view(PROGRESS_BAR_VALUE)
 

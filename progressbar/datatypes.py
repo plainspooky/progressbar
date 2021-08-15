@@ -1,4 +1,5 @@
-from typing import Optional, Tuple
+from typing import Union, Tuple
 
-ColorType = Optional[Tuple[int, int, int]]
-"""A three elements containing red, green and blue values or is `None`."""
+ColorType = Union[int, Tuple[int, int, int], None]
+"""An integerm, three elements containing red, green and blue values or
+`None`."""

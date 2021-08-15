@@ -21,23 +21,43 @@ CUSTOM_COLUMNS_VALUE = DEFAULT_COLUMN_WIDTH
 ILLEGAL_HEX_TRIPLETS = ("", "#", "000", "#12", "#1234", "#12345", "#1234567")
 
 UNSANITIZED_COLORS = (
-    (MIN_RGB_VALUE),
+    # 1 - invalid tuples
+    None,
+    (MIN_RGB_VALUE,),
     (MIN_RGB_VALUE, MAX_RGB_VALUE),
     (MIN_RGB_VALUE, MAX_RGB_VALUE, MIN_RGB_VALUE, MAX_RGB_VALUE),
+    # 2 - valid tuples
     (MIN_RGB_VALUE, MIN_RGB_VALUE, MIN_RGB_VALUE),
     (MAX_RGB_VALUE, MAX_RGB_VALUE, MAX_RGB_VALUE),
+    # 3 - valid tuples with out of range values
     (MIN_RGB_VALUE - 1, MIN_RGB_VALUE - 1, MIN_RGB_VALUE - 1),
     (MAX_RGB_VALUE + 1, MAX_RGB_VALUE + 1, MAX_RGB_VALUE + 1),
+    # 4 - valid integers
+    MIN_RGB_VALUE,
+    MAX_RGB_VALUE,
+    # 5 - valid integers with out of range values
+    MIN_RGB_VALUE - 1,
+    MAX_RGB_VALUE + 1,
 )
 
 SANITIZED_COLORS = (
+    # 1 - invalid tuples
     None,
     None,
     None,
+    None,
+    # 2 - valid tuples
     (MIN_RGB_VALUE, MIN_RGB_VALUE, MIN_RGB_VALUE),
     (MAX_RGB_VALUE, MAX_RGB_VALUE, MAX_RGB_VALUE),
+    # 3 - valid tuples with invalid values
     (MIN_RGB_VALUE, MIN_RGB_VALUE, MIN_RGB_VALUE),
     (MAX_RGB_VALUE, MAX_RGB_VALUE, MAX_RGB_VALUE),
+    # 4 - valid integers
+    MIN_RGB_VALUE,
+    MAX_RGB_VALUE,
+    # 5 - valid integers with out of range values
+    MIN_RGB_VALUE,
+    MAX_RGB_VALUE,
 )
 
 COLOR_SAMPLES = zip(UNSANITIZED_COLORS, SANITIZED_COLORS)
@@ -91,6 +111,6 @@ def test_if_get_valid_values_for_get_random_colors() -> None:
 
 
 @mark.parametrize("color", COLOR_SAMPLES)
-def test_with_sanitize_colors_discards_illegal_values(color) -> None:
+def test_if_sanitize_colors_discards_illegal_values(color) -> None:
     given, expected = color
     assert sanitize_color(given) == expected
