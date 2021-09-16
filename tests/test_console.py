@@ -5,7 +5,7 @@ from pytest import mark
 
 from progressbar.console import VT100
 
-ALL_CODES = ["reset_colors","restore_cursor","save_cursor"]
+ALL_CODES = ["reset_colors", "restore_cursor", "save_cursor"]
 
 # COLOR_CODES = ["set_bg_color", "set_fg_color"]
 

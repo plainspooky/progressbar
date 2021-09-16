@@ -12,7 +12,7 @@ def convert_hex_colors(color: str) -> ColorType:
     """Converts hexadecimal formated colors to a tuple with RGB values.
 
     Connversion from 3-bit to 6-bit is made by repeating each color component,
-    e.g., `#123` is translated as `#112233`.
+    e.g., `#123` is translated to `#112233`.
 
     source [Wikipedia](https://en.wikipedia.org/wiki/Web_colors#Shorthand_hexadecimal_form)"""  # noqa E501
 
